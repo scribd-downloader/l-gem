@@ -4,48 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const gameImage = document.getElementById("game-image");
     const fullscreenBtn = document.getElementById("fullscreen-btn");
 
-    // Preload existing iframe
-    const preloadedFrame = document.getElementById("game-frame");
-    const gameLoader = document.getElementById("game-loader");
-    let frameReady = false;
-
-    if (preloadedFrame) {
-        // Start loading immediately
-        preloadedFrame.addEventListener('load', function() {
-            frameReady = true;
-            if (gameLoader) gameLoader.style.display = 'none';
-        });
-    }
-
     function startGame() {
         console.log("Game Started");
         // Remove image & button
         playBtn.style.display = "none";
         gameImage.style.display = "none";
+        // Create iframe on demand
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://ludoking.com/play/";
+        iframe.id = "game-frame";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.allowFullscreen = true;
+        iframe.setAttribute("allow", "fullscreen; autoplay; clipboard-write");
+        iframe.setAttribute("referrerpolicy", "no-referrer");
 
-        // Show loader until ready
-        if (gameLoader) gameLoader.style.display = 'flex';
+        iframe.addEventListener('error', function() {
+            // Fallback if blocked
+            window.open('https://ludoking.com/play/', '_blank', 'noopener');
+        });
 
-        // If preloaded iframe exists and is ready, just show it
-        if (preloadedFrame) {
-            // Show regardless; onload will hide loader
-            preloadedFrame.style.display = 'block';
-            fullscreenBtn.style.display = "block";
-
-            // If it already finished loading earlier, hide the loader now
-            if (frameReady && gameLoader) {
-                gameLoader.style.display = 'none';
-            }
-
-            // Fallback: if still not loaded after 2s (likely blocked), open new tab
-            setTimeout(() => {
-                if (!frameReady) {
-                    if (gameLoader) gameLoader.style.display = 'none';
-                    window.open('https://ludoking.com/play/', '_blank', 'noopener');
-                }
-            }, 2000);
-            return;
-        }
+        gameContainer.appendChild(iframe);
+        fullscreenBtn.style.display = "block";
     }
 
     // Click events for button & image
