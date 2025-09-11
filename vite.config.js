@@ -21,7 +21,9 @@ export default defineConfig({
     copy({
       targets: [
         { src: 'ads.txt', dest: 'dist' },
-        { src: 'js/scripts.js', dest: 'dist/js' }
+        { src: 'js/scripts.js', dest: 'dist/js' },
+        { src: 'BingSiteAuth.xml', dest: 'dist' },
+        { src: 'google6a0b563becc05893.html', dest: 'dist' }
       ],
       hook: 'closeBundle',
     }),
