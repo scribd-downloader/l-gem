@@ -181,13 +181,17 @@ body {
 }
 /* Fullscreen Button */
 .fullscreen-btn {
-    background-color: #28a745;
+    background: linear-gradient(45deg, #ff3c00, #ff8c00);
     color: white;
-    font-size: 18px;
+    font-size: 32px;
+    font-weight: bold;
     padding: 10px 20px;
+    box-shadow: 0px 5px 15px rgba(255, 60, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-transform: uppercase;
     margin: 10px auto;
 }
 
@@ -394,18 +398,6 @@ a {
     position: relative;
     z-index: 2;
 }
-
-.hero-image {
-    background-image: url('../images/The Ultimate Multiplayer Board Game.webp');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 400px;
-    animation: float 6s ease-in-out infinite;
-    position: relative;
-    z-index: 2;
-}
-
 .hero-buttons .btn {
     padding: 0.75rem 1.5rem;
     font-weight: 600;
@@ -753,38 +745,6 @@ section {
     border-radius: 20px;
     overflow: hidden;
 }
-
-.screen-slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.screen-slide.active {
-    opacity: 1;
-}
-
-.app-screen {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-}
-
-.app-screen-1 {
-    background-image: url('../images/Ludo King Pro.webp');
-}
-
-.app-screen-2 {
-    background-image: url('../images/Ludo king Pro Play Now.webp');
-}
-
-.app-screen-3 {
-    background-image: url('../images/Ludo King Pro bg.webp');
-}
-
 .screen-indicators {
     display: flex;
     justify-content: center;
@@ -803,50 +763,6 @@ section {
 .indicator.active {
     background: var(--ludo-blue);
 }
-
-.floating-shape {
-    position: absolute;
-    border-radius: 50%;
-    z-index: 1;
-    animation: float 6s ease-in-out infinite;
-}
-
-.shape-1 {
-    width: 60px;
-    height: 60px;
-    background: rgba(var(--ludo-red-rgb), 0.1);
-    top: 10%;
-    left: 0;
-    animation-delay: 0s;
-}
-
-.shape-2 {
-    width: 80px;
-    height: 80px;
-    background: rgba(var(--ludo-blue-rgb), 0.1);
-    bottom: 10%;
-    right: 5%;
-    animation-delay: 1s;
-}
-
-.shape-3 {
-    width: 40px;
-    height: 40px;
-    background: rgba(var(--ludo-green-rgb), 0.1);
-    bottom: 30%;
-    left: 10%;
-    animation-delay: 2s;
-}
-
-.shape-4 {
-    width: 50px;
-    height: 50px;
-    background: rgba(var(--ludo-yellow-rgb), 0.1);
-    top: 30%;
-    right: 10%;
-    animation-delay: 3s;
-}
-
 .download-content {
     padding: 30px 0;
 }
