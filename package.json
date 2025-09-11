@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "rollup:build": "rollup -c",
-    "build:site": "npm run rollup:build && vite build"
+    "build:site": "vite build && rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
