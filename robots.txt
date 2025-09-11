@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://ludoking.pro/sitemap.xml
