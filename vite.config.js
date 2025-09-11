@@ -21,6 +21,7 @@ export default defineConfig({
     copy({
       targets: [
         { src: 'ads.txt', dest: 'dist' },
+        { src: 'js/scripts.js', dest: 'dist/js' }
       ],
       hook: 'closeBundle',
     }),
