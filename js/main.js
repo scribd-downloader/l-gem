@@ -32,6 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
             preloadedFrame.style.display = 'block';
             fullscreenBtn.style.display = "block";
 
+            // If it already finished loading earlier, hide the loader now
+            if (frameReady && gameLoader) {
+                gameLoader.style.display = 'none';
+            }
+
             // Fallback: if still not loaded after 2s (likely blocked), open new tab
             setTimeout(() => {
                 if (!frameReady) {

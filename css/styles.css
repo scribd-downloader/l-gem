@@ -439,42 +439,6 @@ a {
     transform: translateY(-5px);
     box-shadow: 0 15px 25px rgba(52, 152, 219, 0.3);
 }
-
-.animated-dice {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background-image: url('../images/ludo-icon-1.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index: 1;
-    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.2));
-}
-
-.dice-1 {
-    top: 20%;
-    left: 10%;
-    animation: float 8s ease-in-out infinite, rotate 15s linear infinite;
-}
-
-.dice-2 {
-    top: 60%;
-    right: 15%;
-    animation: float 10s ease-in-out infinite, rotate 20s linear infinite;
-}
-
-.dice-3 {
-    bottom: 10%;
-    left: 30%;
-    animation: float 7s ease-in-out infinite, rotate 12s linear infinite;
-}
-
-.dice-4 {
-    top: 30%;
-    right: 25%;
-    animation: float 9s ease-in-out infinite, rotate 18s linear infinite;
-}
-
 /* ===== SECTION STYLES ===== */
 section {
     padding: 80px 0;
