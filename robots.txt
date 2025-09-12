@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://ludoking.pro/sitemap.xml
+Sitemap: https://theludogame.com/sitemap.xml
