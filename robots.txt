@@ -1,4 +1,30 @@
+# Allow all search engines to crawl the site
 User-agent: *
-Disallow:
+Allow: /
 
+# Specific directives for Google
+User-agent: Googlebot
+Allow: /
+
+# Specific directives for Bing
+User-agent: Bingbot
+Allow: /
+
+# Specific directives for other major search engines
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Crawl delay (optional - helps prevent overloading your server)
+Crawl-delay: 1
+
+# Sitemap location
 Sitemap: https://theludogame.com/sitemap.xml
