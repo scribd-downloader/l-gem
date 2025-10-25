@@ -16,6 +16,14 @@ export default defineConfig({
         '/download',
         '/privacy-policy',
         '/terms-of-service',
+        // Language pages
+        '/ar',
+        '/de',
+        '/es',
+        '/id',
+        '/it',
+        '/pt',
+        '/tk',
       ],
     }),
     copy({
@@ -39,6 +47,14 @@ export default defineConfig({
         download: resolve(__dirname, 'download.html'),
         privacyPolicy: resolve(__dirname, 'privacy-policy.html'),
         termsOfService: resolve(__dirname, 'terms-of-service.html'),
+        // Language pages
+        ar: resolve(__dirname, 'ar.html'),
+        de: resolve(__dirname, 'de.html'),
+        es: resolve(__dirname, 'es.html'),
+        id: resolve(__dirname, 'id.html'),
+        it: resolve(__dirname, 'it.html'),
+        pt: resolve(__dirname, 'pt.html'),
+        tk: resolve(__dirname, 'tk.html'),
       },
     },
   },
@@ -55,6 +71,14 @@ export default defineConfig({
           '/download': '/download.html',
           '/privacy-policy': '/privacy-policy.html',
           '/terms-of-service': '/terms-of-service.html',
+          // Language pages
+          '/ar': '/ar.html',
+          '/de': '/de.html',
+          '/es': '/es.html',
+          '/id': '/id.html',
+          '/it': '/it.html',
+          '/pt': '/pt.html',
+          '/tk': '/tk.html',
         };
 
         const sanitizedUrl = req.url.replace(/\/$/, '');
@@ -86,6 +110,28 @@ export default defineConfig({
       });
       server.middlewares.use('/terms-of-service.html', (req, res) => {
         res.sendFile(resolve(__dirname, 'terms-of-service.html'));
+      });
+      // Language pages middleware
+      server.middlewares.use('/ar.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'ar.html'));
+      });
+      server.middlewares.use('/de.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'de.html'));
+      });
+      server.middlewares.use('/es.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'es.html'));
+      });
+      server.middlewares.use('/id.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'id.html'));
+      });
+      server.middlewares.use('/it.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'it.html'));
+      });
+      server.middlewares.use('/pt.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'pt.html'));
+      });
+      server.middlewares.use('/tk.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'tk.html'));
       });
     },
   },

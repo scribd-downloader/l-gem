@@ -511,6 +511,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add floating objects to sections
     addFloatingObjects();
+    
+    // Initialize language selector
+    initializeLanguageSelector();
 });
 
 // Add floating animated objects to specific sections (dice, tokens, etc.)
@@ -606,4 +609,157 @@ function downloadWindows() {
             }, 3000);
         }, 100);
     }
+}
+
+// Language Selector Functionality
+function initializeLanguageSelector() {
+    const languageDropdown = document.getElementById('languageDropdown');
+    const languageItems = document.querySelectorAll('[data-lang]');
+    
+    if (!languageDropdown || !languageItems.length) return;
+    
+    // Language configuration
+    const languages = {
+        'en': { name: 'English', flag: 'flag-us' },
+        'es': { name: 'Español', flag: 'flag-es' },
+        'ar': { name: 'العربية', flag: 'flag-sa' },
+        'pt': { name: 'Português', flag: 'flag-br' },
+        'id': { name: 'Bahasa Indonesia', flag: 'flag-id' },
+        'de': { name: 'Deutsch', flag: 'flag-de' },
+        'tr': { name: 'Türkçe', flag: 'flag-tr' },
+        'vi': { name: 'Tiếng Việt', flag: 'flag-vn' },
+        'fr': { name: 'Français', flag: 'flag-fr' },
+        'it': { name: 'Italiano', flag: 'flag-it' },
+        'ro': { name: 'Română', flag: 'flag-ro' }
+    };
+    
+    // Get current language from localStorage or default to English
+    let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    
+    // Update dropdown display
+    function updateDropdownDisplay(lang) {
+        const language = languages[lang];
+        if (language) {
+            languageDropdown.innerHTML = `<i class="fas fa-globe me-1"></i>${language.name}`;
+        }
+    }
+    
+    // Update active state
+    function updateActiveState(lang) {
+        languageItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-lang') === lang) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    // Initialize display
+    updateDropdownDisplay(currentLanguage);
+    updateActiveState(currentLanguage);
+    
+    // Handle language selection
+    languageItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const selectedLang = this.getAttribute('data-lang');
+            
+            // Update current language
+            currentLanguage = selectedLang;
+            localStorage.setItem('selectedLanguage', selectedLang);
+            
+            // Update display
+            updateDropdownDisplay(selectedLang);
+            updateActiveState(selectedLang);
+            
+            // Show language change notification
+            showLanguageChangeNotification(languages[selectedLang].name);
+            
+            // Close dropdown
+            const dropdown = bootstrap.Dropdown.getInstance(languageDropdown);
+            if (dropdown) {
+                dropdown.hide();
+            }
+        });
+    });
+}
+
+// Show language change notification
+function showLanguageChangeNotification(languageName) {
+    // Remove existing notification if any
+    const existingNotification = document.querySelector('.language-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = 'language-notification';
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-check-circle me-2"></i>
+            Language changed to ${languageName}
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--ludo-blue), var(--ludo-purple));
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(43, 125, 232, 0.3);
+        z-index: 9999;
+        animation: slideInRight 0.5s ease forwards;
+        font-weight: 600;
+        max-width: 300px;
+    `;
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        .language-notification {
+            animation: slideInRight 0.5s ease forwards;
+        }
+        .language-notification.fade-out {
+            animation: slideOutRight 0.5s ease forwards;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 500);
+    }, 3000);
 } 
