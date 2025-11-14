@@ -23,7 +23,7 @@ export default defineConfig({
         '/id',
         '/it',
         '/pt',
-        '/tk',
+        '/tr',
       ],
     }),
     copy({
@@ -54,7 +54,7 @@ export default defineConfig({
         id: resolve(__dirname, 'id.html'),
         it: resolve(__dirname, 'it.html'),
         pt: resolve(__dirname, 'pt.html'),
-        tk: resolve(__dirname, 'tk.html'),
+        tr: resolve(__dirname, 'tr.html'),
       },
     },
   },
@@ -78,7 +78,7 @@ export default defineConfig({
           '/id': '/id.html',
           '/it': '/it.html',
           '/pt': '/pt.html',
-          '/tk': '/tk.html',
+          '/tr': '/tr.html',
         };
 
         const sanitizedUrl = req.url.replace(/\/$/, '');
@@ -130,8 +130,8 @@ export default defineConfig({
       server.middlewares.use('/pt.html', (req, res) => {
         res.sendFile(resolve(__dirname, 'pt.html'));
       });
-      server.middlewares.use('/tk.html', (req, res) => {
-        res.sendFile(resolve(__dirname, 'tk.html'));
+      server.middlewares.use('/tr.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'tr.html'));
       });
     },
   },
