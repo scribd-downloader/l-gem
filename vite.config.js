@@ -16,6 +16,7 @@ export default defineConfig({
         '/download',
         '/privacy-policy',
         '/terms-of-service',
+        '/ludo-naira', 
         // Language pages
         '/ar',
         '/de',
@@ -26,6 +27,7 @@ export default defineConfig({
         '/tr',
       ],
     }),
+
     copy({
       targets: [
         { src: 'ads.txt', dest: 'dist' },
@@ -36,6 +38,7 @@ export default defineConfig({
       hook: 'closeBundle',
     }),
   ],
+
   build: {
     rollupOptions: {
       input: {
@@ -47,6 +50,10 @@ export default defineConfig({
         download: resolve(__dirname, 'download.html'),
         privacyPolicy: resolve(__dirname, 'privacy-policy.html'),
         termsOfService: resolve(__dirname, 'terms-of-service.html'),
+
+        // ⭐ NEW PAGE ADDED
+        ludoNaira: resolve(__dirname, 'ludo-naira.html'),
+
         // Language pages
         ar: resolve(__dirname, 'ar.html'),
         de: resolve(__dirname, 'de.html'),
@@ -58,8 +65,10 @@ export default defineConfig({
       },
     },
   },
+
   server: {
     fs: { strict: false },
+
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const routeToHtml = {
@@ -71,6 +80,8 @@ export default defineConfig({
           '/download': '/download.html',
           '/privacy-policy': '/privacy-policy.html',
           '/terms-of-service': '/terms-of-service.html',
+          '/ludo-naira': '/ludo-naira.html',
+
           // Language pages
           '/ar': '/ar.html',
           '/de': '/de.html',
@@ -111,6 +122,12 @@ export default defineConfig({
       server.middlewares.use('/terms-of-service.html', (req, res) => {
         res.sendFile(resolve(__dirname, 'terms-of-service.html'));
       });
+
+      // ⭐ NEW MIDDLEWARE FOR ludo-naira
+      server.middlewares.use('/ludo-naira.html', (req, res) => {
+        res.sendFile(resolve(__dirname, 'ludo-naira.html'));
+      });
+
       // Language pages middleware
       server.middlewares.use('/ar.html', (req, res) => {
         res.sendFile(resolve(__dirname, 'ar.html'));
