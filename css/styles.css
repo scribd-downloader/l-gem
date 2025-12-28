@@ -424,6 +424,17 @@ a {
     animation: gradientMove 3s ease infinite;
 }
 
+.navbar-logo {
+    max-height: 40px; /* Adjust height based on navbar size */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.05);
+}
+
 .nav-link {
     font-weight: 600;
     padding: 0.5rem 1rem;
